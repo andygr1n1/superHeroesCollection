@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:active {
+  color: inherit;
+}
+
+a:visited {
+  color: inherit;
+}
+
+.a-active-color {
+  color: rgb(255, 0, 106);
+}
+
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  background: #333333;
+  color: snow;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.main-header {
+  padding: 20px 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul .x-menu {
+  display: inline;
+  margin-left: 50px;
+}
+
+#select-movie {
+  position: relative;
+  background-color: #222222;
+  margin: 0;
+  /* padding: 10px; */
+  width: 200px;
+  height: 35px;
+  padding: 0;
+}
+
+#select-movie a {
+  margin-left: 10px;
+}
+
+#select-movie a:hover {
+  color: rgb(255, 0, 106);
+}
+
+.movie {
+  list-style-type: none;
+  cursor: pointer;
+  position: absolute;
+  display: none;
+  justify-content: left;
+  align-items: center;
+  width: 200px;
+  background-color: #222222;
+  border: 1px solid black;
+  height: 35px;
+}
+
+.active {
+  padding: 0;
+  margin: 0;
+  /* background-color: red; */
+  height: 35px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.show {
+  display: flex;
+}
+
+.alive-filter,
+.dead-filter,
+.all-heroes-filter,
+.movie-filter {
+  cursor: pointer;
+}
+.alive-filter:hover,
+.dead-filter:hover,
+.all-heroes-filter:hover,
+.movie-filter:hover {
+  color: rgb(255, 0, 106);
+}
+
+.super-red {
+  color: rgb(255, 0, 106);
+}
+.heroes-blue {
+  color: rgb(44, 143, 255);
+}
+
+.collection-wrapper {
+  padding: 20px 0;
+  border-top: 1px solid #dddddd;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.hero-card {
+  width: 250px;
+  /* background: green; */
+  margin-bottom: 10px;
+}
+
+.hero-card-img {
+  width: 250px;
+}

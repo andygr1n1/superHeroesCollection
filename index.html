@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Super Heroes Collection</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="js/index.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav">
+        <h2 class="main-header">
+          My <span class="super-red">Super</span>
+          <span class="heroes-blue">Heroes</span> Collection
+        </h2>
+        <ul>
+          <li  class="x-menu all-heroes-filter">Все герои</li>
+          <li  class="x-menu alive-filter">Статус: в живых</li>
+          <li  class="x-menu dead-filter"> Статус: умер</li>
+          <li  class="x-menu movie-filter">Movie: Doctor Strange</li>
+        </ul>
+
+         <ul id="select-movie">
+          <li  class="movie active"><a class="movie-link" href="#">Select Movie</a></li>
+           <li  class="movie"><a class="movie-link" href="#">Doctor Strange</a></li>
+            <li  class="movie"><a class="movie-link" href="#">Avengers: Endgame</a></li>
+            <li  class="movie"><a class="movie-link" href="#">Ant-Man</a></li>             
+        </ul>
+      </div>
+      <div class="movie-name-container">Movie: All Movies </div>
+      <div class="collection-wrapper">
+      </div>
+    </div>
+  </body>
+</html>
