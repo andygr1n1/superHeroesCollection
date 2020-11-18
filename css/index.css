@@ -50,47 +50,47 @@ body {
   align-items: center;
 }
 
+#menu {
+  position: relative;
+
+  width: 300px;
+  height: 50px;
+}
+
+#select-movie {
+  position: absolute;
+  /* background-color: #222222; */
+  margin: 0;
+  /* padding: 10px; */
+  width: 300px;
+  height: 50px;
+  padding: 0;
+}
+
 ul .x-menu {
   display: inline;
   margin-left: 50px;
 }
 
-#select-movie {
-  position: relative;
-  background-color: #222222;
-  margin: 0;
-  /* padding: 10px; */
-  width: 200px;
-  height: 35px;
-  padding: 0;
-}
-
-#select-movie a {
-  margin-left: 10px;
-}
-
-#select-movie a:hover {
-  color: rgb(255, 0, 106);
-}
-
-.movie {
+.menu-movie {
   list-style-type: none;
   cursor: pointer;
   position: absolute;
   display: none;
   justify-content: left;
   align-items: center;
-  width: 200px;
+  width: 300px;
   background-color: #222222;
   border: 1px solid black;
-  height: 35px;
+  height: 50px;
+  padding-left: 10px;
+}
+.menu-movie:hover {
+  color: rgb(255, 0, 106);
 }
 
 .active {
-  padding: 0;
   margin: 0;
-  /* background-color: red; */
-  height: 35px;
   display: flex;
   justify-content: left;
   align-items: center;

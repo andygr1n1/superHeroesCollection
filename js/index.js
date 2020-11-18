@@ -1,3 +1,4 @@
+/* eslint-disable arrow-parens */
 document.addEventListener("DOMContentLoaded", () => {
   // eslint-disable-next-line strict
   "use strict";
@@ -60,85 +61,89 @@ document.addEventListener("DOMContentLoaded", () => {
     movieNameContainer.textContent = `Movie: ${name}`;
   };
 
-  const request = new XMLHttpRequest();
-  request.open("GET", "../database/dbHeroes.json");
-  request.setRequestHeader("Content-type", "application/json");
-  request.send();
-  request.addEventListener("readystatechange", (event) => {
-    try {
-      if (request.readyState === 4 && request.status === 200) {
-        let heroesData = JSON.parse(request.responseText);
-        addCards(heroesData);
+  const core = (response) => {
+    addCards(response);
+    document.addEventListener("click", (event) => {
+      const target = event.target;
 
-        document.addEventListener("click", (event) => {
-          const target = event.target;
+      if (target.closest(".all-heroes-filter")) {
+        addCards(response);
+        addMovie("All Movies");
+      }
+      
+      if (target.closest(".alive-filter")) {
+        addCards(response.filter((obj) => obj.status === "alive"));
+        addMovie("All Movies");
+      }
 
-          if (target.closest(".alive-filter")) {
-            heroesData = JSON.parse(request.responseText).filter(
-              (obj) => obj.status === "alive"
-            );
-            addCards(heroesData);
-            addMovie("All Movies");
-          }
-          if (target.closest(".dead-filter")) {
-            heroesData = JSON.parse(request.responseText).filter(
-              (obj) => obj.status === "deceased"
-            );
-            addCards(heroesData);
-            addMovie("All Movies");
-          }
-
-          if (target.closest(".all-heroes-filter")) {
-            heroesData = JSON.parse(request.responseText);
-            addCards(heroesData);
-            addMovie("All Movies");
-          }
-
-          if (target.closest(".movie-filter")) {
-            heroesData = JSON.parse(request.responseText).filter((obj) => {
+      if (target.closest(".menu-movie")) {
+        console.log(target.textContent);
+        if (target.textContent === "Select Movie") {
+          const surprice = 7777777;
+        } else {
+          addCards(
+            response.filter((obj) => {
               if (obj.movies !== undefined) {
-                return obj.movies.join(",").includes("Doctor Strange");
+                return obj.movies.join(",").includes(target.textContent);
               }
-            });
-            console.log(heroesData);
-            addCards(heroesData);
-            addMovie("Doctor Strange");
-          }
+            })
+          );
+          addMovie(target.textContent);
+        }
+      }
+    });
+
+    const selectMovie = document.getElementById("select-movie");
+    let movieList = new Set();
+    response.forEach((allElements) => {
+      if (allElements.movies !== undefined) {
+        allElements.movies.forEach((arrayElement) => {
+          movieList.add(arrayElement);
         });
       }
-    } catch (e) {
-      console.warn(e.name);
-      collectionWrapper.textContent = "СОЗДАТЬ ФОРМУ ОТПРАВКИ ОШИБКИ";
+    });
+    movieList = Array.from(movieList).sort();
+
+    movieList.forEach((movie) => {
+      const addMovie = document.createElement("li");
+      addMovie.classList.add("menu-movie");
+      addMovie.textContent = movie;
+      selectMovie.insertAdjacentElement("beforeend", addMovie);
+    });
+
+    //!Select - menu
+    const movie = document.querySelectorAll(".menu-movie");
+    const activeMovie = document.querySelector(".active");
+    for (let i = 1; i < movie.length; i++) {
+      movie[i].style.marginTop = 50 * i + "px";
+      selectMovie.style.height = 50 + 50 * i + "px";
     }
-  });
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (
+        !target.matches("#select-movie, .activeMovie, .menu-movie") &&
+        activeMovie.classList.contains("a-active-color")
+      ) {
+        movie.forEach((element) => {
+          element.classList.remove("show");
+          activeMovie.classList.remove("a-active-color");
+        });
+      }
+      if (target.closest(".active")) {
+        activeMovie.classList.toggle("a-active-color");
+        movie.forEach((element) => {
+          element.classList.toggle("show");
+        });
+      }
+    });
+  };
 
-  //!Select - menu
-  const movie = document.querySelectorAll(".movie");
-  const selectMovie = document.getElementById("select-movie");
-  const activeMovie = document.querySelector(".active");
-
-  for (let i = 1; i < movie.length; i++) {
-    movie[i].style.marginTop = 28 * i + "px";
-  }
-
-  document.addEventListener("click", (event) => {
-    const target = event.target;
-    console.log(target);
-
-    if (
-      !target.matches(".select-movie, .activeMovie, .movie, .movie-link") &&
-      activeMovie.classList.contains("a-active-color")
-    ) {
-      movie.forEach((element) => {
-        element.classList.remove("show");
-        activeMovie.classList.remove("a-active-color");
-      });
-    }
-    if (target.closest(".active")) {
-      activeMovie.classList.toggle("a-active-color");
-      movie.forEach((element) => {
-        element.classList.toggle("show");
-      });
-    }
-  });
+  fetch("../database/dbHeroes.json")
+    .then((response) => {
+      if (response.status !== 200) {
+        throw new Error("status network not 200");
+      }
+      return response.json();
+    })
+    .then((response) => core(response));
 });
