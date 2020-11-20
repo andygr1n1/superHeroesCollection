@@ -14,22 +14,6 @@ h6 {
   margin: 0;
 }
 
-a {
-  text-decoration: none;
-}
-
-a:active {
-  color: inherit;
-}
-
-a:visited {
-  color: inherit;
-}
-
-.a-active-color {
-  color: rgb(255, 0, 106);
-}
-
 body {
   font-family: "Roboto Condensed", sans-serif;
   position: relative;
@@ -40,11 +24,13 @@ body {
 .container {
   max-width: 1200px;
   margin: auto;
+  margin-top: 50px;
 }
 
 .movie-name-container {
-  color: #beb1b1;
+  color: snow;
   font-size: 20px;
+  font-weight: bolder;
 }
 
 .main-header {
@@ -68,6 +54,7 @@ body {
   width: 200px;
   height: 50px;
   cursor: pointer;
+  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
 }
 
 .shadow-board {
@@ -80,6 +67,7 @@ body {
   height: 100%;
   z-index: 9;
   background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
 }
 
 #movie-board {
@@ -94,6 +82,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 75%;
+  padding-bottom: 50px;
 }
 
 .movie-board-row {
@@ -110,6 +99,7 @@ body {
   width: 100%;
 }
 .close-button {
+  font-weight: bolder;
   display: block;
   float: right;
   width: 30px;
@@ -119,6 +109,10 @@ body {
   border: 2px solid rgb(255, 0, 0);
   margin: 10px;
   cursor: pointer;
+  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}
+
+.close-button:hover {
 }
 
 .menu-movie {
@@ -171,16 +165,17 @@ body {
   border-top: 1px solid #dddddd;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .hero-card {
   width: 250px;
-  /* background: green; */
-  margin-bottom: 10px;
+  margin: 10px;
   background: snow;
   color: #333333;
-  box-shadow: 10px 7px 12px rgba(77, 103, 255, 0.200);
+  box-shadow: 10px 7px 12px rgba(77, 103, 255, 0.2);
+  opacity: 0;
+  overflow: hidden;
 }
 
 .hero-card-img {
@@ -207,6 +202,15 @@ body {
 
 .collection-card-content {
   margin: 5px;
+}
+
+.hero-card-img {
+  transition: 1s;
+  display: block;
+}
+
+.hero-card-img:hover {
+  transform: scale(1.03);
 }
 
 /*! media */

@@ -22,8 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
       } = element;
 
       if (birthDay === undefined) {
-        birthDay = "неизвестно";
+        birthDay = "unknown";
       }
+
+      if (species === undefined) {
+        species = "unknown";
+      }
+
 
       const heroCard = document.createElement("div");
       heroCard.classList.add("hero-card");
@@ -61,6 +66,20 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       collectionWrapper.append(heroCard);
+      //!animate-card
+      let opacityCounter = 0,
+        animation;
+      const timer = () => {
+        animation = requestAnimationFrame(timer);
+        opacityCounter += 0.008;
+
+        heroCard.style.opacity = `${opacityCounter}`;
+
+        if (opacityCounter >= 1) {
+          cancelAnimationFrame(animation);
+        }
+      };
+      timer();
     });
     const nameFocus = document.querySelectorAll(".name-focus"),
       heroCard = document.querySelectorAll(".hero-card"),
@@ -78,6 +97,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const addMovie = name => {
     movieNameContainer.textContent = `Movie: ${name}`;
+  };
+
+  //!f
+  const showBoard = selector => {
+    if (selector.style.opacity <= 0) {
+      let opacityCounter = 0,
+        animation;
+      const timer = () => {
+        animation = requestAnimationFrame(timer);
+        selector.style.display = "block";
+        opacityCounter += 0.05;
+
+        selector.style.opacity = `${opacityCounter}`;
+
+        if (opacityCounter >= 1) {
+          cancelAnimationFrame(animation);
+        }
+      };
+      timer();
+    } else {
+      let opacityCounter = 1,
+        animation;
+      const timer = () => {
+        animation = requestAnimationFrame(timer);
+        selector.style.display = "block";
+        opacityCounter -= 0.05;
+
+        selector.style.opacity = `${opacityCounter}`;
+
+        if (opacityCounter <= 0) {
+          document.querySelector(".shadow-board").style.display = "none";
+          document.body.style.overflow = "auto";
+          cancelAnimationFrame(animation);
+        }
+      };
+      timer();
+    }
   };
 
   //?CORE?CORE?CORE?CORE?CORE?CORE?CORE?CORE?CORE?CORE?CORE
@@ -113,8 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(target);
 
       if (target.closest("#movie-select-button")) {
-        console.log("sdfwefwef");
         shadowBoard.style.display = "block";
+        showBoard(shadowBoard);
         document.body.style.overflow = "hidden";
       }
 
@@ -123,8 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
         target.classList.contains("shadow-board") ||
         target.closest(".menu-movie")
       ) {
-        shadowBoard.style.display = "none";
-        document.body.style.overflow = "auto";
+        showBoard(shadowBoard);
       }
 
       if (target.closest(".all-heroes-filter")) {
@@ -153,6 +208,26 @@ document.addEventListener("DOMContentLoaded", () => {
       // if (window.innerWidth < 800) {
       // }
     });
+
+    document
+      .querySelector(".close-button")
+      .addEventListener("mouseover", event => {
+        const target = event.target;
+        console.log(target);
+        let deg = 0,
+          animation;
+        const rotateMe = () => {
+          animation = requestAnimationFrame(rotateMe);
+          deg += 15;
+
+          target.style.transform = `rotate(${deg}deg)`;
+
+          if (deg >= 340) {
+            cancelAnimationFrame(animation);
+          }
+        };
+        rotateMe();
+      });
   };
 
   fetch("../database/dbHeroes.json")
