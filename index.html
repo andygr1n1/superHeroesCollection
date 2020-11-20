@@ -15,20 +15,25 @@
           My <span class="super-red">Super</span>
           <span class="heroes-blue">Heroes</span> Collection
         </h2>
-        <ul>
-          <li class="x-menu all-heroes-filter">Все герои</li>
-          <li class="x-menu alive-filter">Статус: в живых</li>
-          <li class="x-menu dead-filter">Статус: умер</li>
-        </ul>
+       
+          <div class="x-menu all-heroes-filter"> <span class="heroes-blue">All</span> Heroes</div>
+       
 
-        <div id="menu">
-          <ul id="select-movie">
-            <li class="menu-movie active">Select Movie</li>
-          </ul>
-        </div>
+        <button id="movie-select-button">Select Movie</button>
       </div>
       <div class="movie-name-container">Movie: All Movies</div>
+
       <div class="collection-wrapper"></div>
+    </div>
+
+    <!--hidden board  -->
+    <div class="shadow-board">
+      <div id="movie-board">
+        <div class="close-button-row">
+          <button class="close-button">x</button>
+        </div>
+        <div class="movie-board-row"></div>
+      </div>
     </div>
   </body>
 </html>
