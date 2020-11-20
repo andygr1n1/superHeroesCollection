@@ -24,17 +24,15 @@ body {
 .container {
   max-width: 1200px;
   margin: auto;
-  margin-top: 50px;
 }
 
 .movie-name-container {
-  color: snow;
   font-size: 20px;
   font-weight: bolder;
 }
 
 .main-header {
-  padding: 20px 0;
+  padding: 50px 0;
 }
 
 .nav {
@@ -45,9 +43,28 @@ body {
 
 .x-menu {
   display: inline;
-  margin-left: 50px;
   font-family: "Kaushan Script", cursive;
   font-size: 35px;
+  cursor: pointer;
+}
+
+.x-menu:hover {
+  color: rgb(255, 0, 106);
+}
+
+.super-red {
+  color: rgb(255, 0, 106);
+}
+.heroes-blue {
+  color: rgb(44, 143, 255);
+}
+
+.collection-wrapper {
+  padding: 20px 0;
+  border-top: 1px solid #dddddd;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #movie-select-button {
@@ -55,6 +72,11 @@ body {
   height: 50px;
   cursor: pointer;
   clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}
+
+#movie-select-button:hover {
+  color: rgb(240, 97, 157);
+  font-weight: 900;
 }
 
 .shadow-board {
@@ -71,7 +93,7 @@ body {
 }
 
 #movie-board {
-  background: #beb1b1;
+  background: #333333;
   position: absolute;
   display: flex;
   flex-wrap: wrap;
@@ -104,68 +126,30 @@ body {
   float: right;
   width: 30px;
   height: 30px;
-  color: red;
+  color: rgb(255, 0, 106);
   outline: none;
-  border: 2px solid rgb(255, 0, 0);
+  border: 2px solid rgb(255, 0, 106);
   margin: 10px;
   cursor: pointer;
   clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
 }
 
-.close-button:hover {
-}
-
 .menu-movie {
-  background: #333333;
+  background: snow;
   padding: 10px;
   margin: 10px;
-  color: snow;
+  color: #333333;
   width: 30%;
   height: 60px;
   outline: none;
   cursor: pointer;
+  transition: 0.5s;
 }
 .menu-movie:hover {
   color: rgb(255, 0, 106);
-}
-
-.active {
-  margin: 0;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-}
-
-.show {
-  display: flex;
-}
-
-.alive-filter,
-.dead-filter,
-.all-heroes-filter,
-.movie-filter {
-  cursor: pointer;
-}
-.alive-filter:hover,
-.dead-filter:hover,
-.all-heroes-filter:hover,
-.movie-filter:hover {
-  color: rgb(255, 0, 106);
-}
-
-.super-red {
-  color: rgb(255, 0, 106);
-}
-.heroes-blue {
-  color: rgb(44, 143, 255);
-}
-
-.collection-wrapper {
-  padding: 20px 0;
-  border-top: 1px solid #dddddd;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  font-weight: bolder;
+  border: 1px solid rgb(255, 0, 106);
+  transform: scale(1.03);
 }
 
 .hero-card {
@@ -180,11 +164,12 @@ body {
 
 .hero-card-img {
   width: 250px;
+  transition: 1s;
+  display: block;
 }
 
-#movie-select-button:hover {
-  color: rgb(240, 97, 157);
-  font-weight: 900;
+.hero-card-img:hover {
+  transform: scale(1.03);
 }
 
 .name-focus {
@@ -199,20 +184,6 @@ body {
 .card-style-movie {
   font-weight: bolder;
 }
-
-.collection-card-content {
-  margin: 5px;
-}
-
-.hero-card-img {
-  transition: 1s;
-  display: block;
-}
-
-.hero-card-img:hover {
-  transform: scale(1.03);
-}
-
 /*! media */
 @media (max-width: 800px) {
   .nav {
@@ -272,8 +243,5 @@ body {
 
   .collection-wrapper {
     margin: 0 30px;
-  }
-
-  .hero-card {
   }
 }

@@ -39,7 +39,7 @@
     ],
     "strict": [
       "error",
-      "global"
+      "never"
     ],
     "brace-style": [
       "error",
