@@ -204,7 +204,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  fetch("../database/dbHeroes.json")
+  fetch("../database/dbHeroes.json", {
+    
+  })
     .then(response => {
       if (response.status !== 200) {
         throw new Error("status network not 200");
